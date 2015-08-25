@@ -1,0 +1,47 @@
+<header id="page-header">
+    <div class="row">
+        <div class="small-12 columns">
+            <label for="singleSelect" > Calcula el valor de tu equipo </label>
+            <br>
+
+
+            <select ng-model="categoriesList" ng-options="occ.name for occ in categories" ng-change="categoryChange()" ></select>
+
+            <select ng-model="modelsList" ng-options="occ.name for occ in models" ng-change="modelChange()" ng-show="categoriesList"></select>
+
+            <select ng-model="capacityList" ng-show="capacity" ng-options="occ.name for occ in capacity" ng-change="capacityChange()" ></select>
+
+
+
+            <br>
+            <div class="large-12 columns" ng-show="modelsList">
+                <label>Condición</label>
+                  <input type="radio" value="new" name="nuevo" ng-model="condition" ng-change="capacityChange()" checked="true">
+                  <label for="">Nuevo</label>
+                  <input type="radio" value="used" name="usado" ng-model="condition" ng-change="capacityChange()">
+                  <label for="">Usado</label>
+            </div>
+            <div class="large-12 columns">
+
+
+
+            <h1 class="text-center">{{modelsList.name}} <span ng-show="capacity">{{capacityList.name}}</span> <i>[{{condition}}]</i><br>
+            <div class="my-super-awesome-loading-box" ng-show="loadingTracker.active()">
+
+                <div class="cssload-contain">
+                    <br>
+                    <div class="cssload-dot"></div>
+                    <div class="cssload-dot"></div>
+                    <div class="cssload-dot"></div>
+                    <div class="cssload-dot"></div>
+                    <div class="cssload-dot"></div>
+                </div>
+
+            </div>
+
+             <div ng-show="prodValue" ng-hide="loadingTracker.active()">{{prodValue | currency}}</div></h1>
+           </div>
+
+        </div>
+    </div>
+</header>
